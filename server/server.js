@@ -4,8 +4,6 @@ const productListData = require('./product_list.json');
 
 const app = express();
 
-const PORT = 4000;
-
 app.use(cors());
 
 app.get('/', (req, res) => {
@@ -13,8 +11,8 @@ app.get('/', (req, res) => {
   res.send(JSON.stringify(productListData));
 });
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log('Connected to port ' + PORT);
+app.listen((process.env.PORT || 4000), function(){
+  console.log('listening 4000');
 });
 
 app.use((err, req, res, next) => {
