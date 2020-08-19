@@ -1,16 +1,28 @@
 import React from 'react';
+import Spinner from './Spinner';
+import Error from './Error';
 import { useFetchProducts } from './API';
 
 function Dashboard() {
-  const { loading, data, error } = useFetchProducts('http://localhost:4000/');
+  const { loading, data, error } = useFetchProducts(
+    'https://fashion-shop123.herokuapp.com/'
+  );
   console.log(loading, data, error);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
 
   if (error) {
-    return <div>Fetching failed!</div>;
+    return (
+      <>
+        <Error />
+      </>
+    );
   } else {
     return (
       <>
