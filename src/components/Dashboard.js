@@ -2,15 +2,15 @@ import React from 'react';
 import { useFetchProducts } from './API';
 
 function Dashboard() {
-  const { loading, data, error } = useFetchProducts('http://localhost:4000/')
+  const { loading, data, error } = useFetchProducts('http://localhost:4000/');
   console.log(loading, data, error);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Fetching failed!</div>
+    return <div>Fetching failed!</div>;
   } else {
     return (
       <>
@@ -20,12 +20,11 @@ function Dashboard() {
               <h4>{val.product_name}</h4>
               <p>{val.actual_price}</p>
             </div>
-          )
+          );
         })}
       </>
     );
   }
-
 }
 
 export default Dashboard;
