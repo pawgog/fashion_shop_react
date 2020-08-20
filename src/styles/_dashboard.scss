@@ -1,27 +1,80 @@
-.fashion-shop-body {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-  padding: 1rem;
-  background-color: $white;
-  box-shadow: 10px 10px 23px -15px rgba(0, 0, 0, 0.75);
-}
-.fashion-shop-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  &__card {
-    width: 23%;
-    height: auto;
-    max-width: 960px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin: 0.5rem;
+.fashion-shop {
+  &-body {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $white;
+    box-shadow: 10px 10px 23px -15px rgba(0, 0, 0, 0.75);
+  }
+  &-topbar {
+    display: flex;
+    flex-direction: row;
     padding: 0.5rem;
-    border: 1px solid $grey;
+    .fashion-shop-input,
+    .fashion-shop-select {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .fashion-shop-input {
+      margin-right: 0.5rem;
+      svg {
+        color: $grey;
+      }
+    }
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+
+    &__cards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin: 0.5rem 0 1rem 0;
+    }
+    &__card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 1px 1px;
+      grid-template-areas: 'img-card content-card';
+      align-items: center;
+      justify-items: center;
+      width: auto;
+      height: auto;
+      max-width: 960px;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0.5rem;
+      border: 1px solid $grey;
+      border-radius: 5px;
+      .img-card {
+        grid-area: img-card;
+        img {
+          max-width: 120px;
+        }
+      }
+      .content-card {
+        grid-area: content-card;
+        h4 {
+          word-break: break-word;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .fashion-shop-list {
+    &__card {
+      width: 23%;
+    }
   }
 }
 
@@ -34,9 +87,14 @@
 }
 
 @include mobile {
-  .fashion-shop-list {
-    &__card {
-      width: 97%;
+  .fashion-shop {
+    &-list {
+      &__card {
+        width: 97%;
+      }
+    }
+    &-topbar {
+      flex-direction: column;
     }
   }
 }
