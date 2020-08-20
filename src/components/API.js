@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { sortProducts, slicePaginationProducts } from './Functions';
 
-export const useFetchProducts = (url, options) => {
+export const useFetchProducts = (url, options, page, search, selectSort) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [countPages, setCountJsonPages] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -10,7 +12,11 @@ export const useFetchProducts = (url, options) => {
       try {
         const res = await fetch(url, options);
         const json = await res.json();
-        setData(json);
+        const searchJson = json.filter((val) => val.product_name.includes(search))
+        const sortJson = selectSort !== '' ? sortProducts(searchJson, selectSort) : searchJson;
+        const { sliceJson, countPages } = slicePaginationProducts(searchJson, sortJson, page);
+        setData(sliceJson);
+        setCountJsonPages(countPages);
       } catch (error) {
         setError(error);
       } finally {
@@ -18,7 +24,7 @@ export const useFetchProducts = (url, options) => {
       }
     };
     fetchData();
-  }, [url, options]);
+  }, [url, options, page, selectSort, search]);
 
-  return { loading, data, error };
+  return { loading, data, countPages, error };
 };
