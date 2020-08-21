@@ -14,6 +14,7 @@ const ProductsList = ({ data, countPages, handleChangePageFn }) => {
             </div>
             <div className="content-card">
               <h4>{val.product_name}</h4>
+              <p>Brand: {val.brand_name}</p>
               <p>{changeCurrency(val.actual_price)}</p>
             </div>
           </div>
