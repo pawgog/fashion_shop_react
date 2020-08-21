@@ -20,6 +20,7 @@ function Dashboard() {
 
   const searchChange = (e) => {
     searchByTitle(e.target.value);
+    changePage(1);
   };
 
   const handleChangePage = (e, value) => {
@@ -55,6 +56,7 @@ function Dashboard() {
         />
         <ProductsList
           data={data}
+          page={page}
           countPages={countPages}
           handleChangePageFn={handleChangePage}
         />

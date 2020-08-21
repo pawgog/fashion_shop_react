@@ -2,7 +2,7 @@ import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { changeCurrency } from './Functions';
 
-const ProductsList = ({ data, countPages, handleChangePageFn }) => {
+const ProductsList = ({ data, page, countPages, handleChangePageFn }) => {
   return (
     <div className="fashion-shop-list">
     <div className="fashion-shop-list__cards">
@@ -21,7 +21,7 @@ const ProductsList = ({ data, countPages, handleChangePageFn }) => {
         );
       })}
     </div>
-    <Pagination count={countPages} onChange={handleChangePageFn} />
+    <Pagination count={countPages} page={page} onChange={handleChangePageFn} />
   </div>
   )
 }
